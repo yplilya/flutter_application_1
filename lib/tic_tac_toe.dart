@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class T_T_T extends StatelessWidget {
+class TicTacToe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,16 +20,16 @@ class _HomePageState extends State<HomePage> {
   List<String> displayExOh = ['', '', '', '', '', '', '', '', ''];
   int countFilled = 0;
 
-  var MyTextStyle = TextStyle(color: Colors.white, fontSize: 30);
+  var myTextStyle = TextStyle(color: Colors.white, fontSize: 30);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[800],
+        backgroundColor: Colors.grey[900],
         body: Column(children: <Widget>[
           Expanded(
             child: Container(
-              color: Colors.grey[800],
+              color: Colors.grey[900],
             ),
           ),
           Expanded(
@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Expanded(
             child: Container(
-              color: Colors.grey[800],
+              color: Colors.grey[900],
             ),
           ),
         ]));
@@ -116,13 +116,13 @@ class _HomePageState extends State<HomePage> {
             return AlertDialog(
                 title: Text(
                   "DRAW!",
-                  style: TextStyle(color: Colors.grey[800]),
+                  style: TextStyle(color: Colors.grey[900]),
                 ),
                 actions: <Widget>[
                   FlatButton(
                     child: Text(
                       "PLAY AGAIN!",
-                      style: TextStyle(color: Colors.grey[800]),
+                      style: TextStyle(color: Colors.grey[900]),
                     ),
                     onPressed: () {
                       _clearTheBoard();
@@ -139,13 +139,13 @@ class _HomePageState extends State<HomePage> {
             return AlertDialog(
                 title: Text(
                   "WINNER IS PLAYER X!",
-                  style: TextStyle(color: Colors.grey[800]),
+                  style: TextStyle(color: Colors.grey[900]),
                 ),
                 actions: <Widget>[
                   FlatButton(
                     child: Text(
                       "PLAY AGAIN!",
-                      style: TextStyle(color: Colors.grey[800]),
+                      style: TextStyle(color: Colors.grey[900]),
                     ),
                     onPressed: () {
                       _clearTheBoard();
