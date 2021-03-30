@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class T_T_T extends StatelessWidget {
+/*class TicTacToe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -8,28 +8,28 @@ class T_T_T extends StatelessWidget {
       home: HomePage(),
     );
   }
-}
+}*/
 
-class HomePage extends StatefulWidget {
+class TicTacToe extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<TicTacToe> {
   bool ohTurn = false;
   List<String> displayExOh = ['', '', '', '', '', '', '', '', ''];
   int countFilled = 0;
 
-  var MyTextStyle = TextStyle(color: Colors.white, fontSize: 30);
+  var myTextStyle = TextStyle(color: Colors.white, fontSize: 30);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[800],
+        backgroundColor: Colors.grey[900],
         body: Column(children: <Widget>[
           Expanded(
             child: Container(
-              color: Colors.grey[800],
+              color: Colors.grey[900],
             ),
           ),
           Expanded(
@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Expanded(
             child: Container(
-              color: Colors.grey[800],
+              color: Colors.grey[900],
             ),
           ),
         ]));
@@ -70,68 +70,74 @@ class _HomePageState extends State<HomePage> {
         displayExOh[index] = 'o';
         ohTurn = !ohTurn;
         countFilled++;
-        _checkWinner();
       } else if (displayExOh[index] == '') {
         displayExOh[index] = 'x';
         ohTurn = !ohTurn;
         countFilled++;
-        _checkWinner();
+      }
+      if (!_checkWinner() && countFilled == 9) {
+        _showDrawDialog();
       }
     });
   }
 
-  void _checkWinner() {
+  bool _checkWinner() {
     for (int i = 0; i < 3; ++i) {
       if (displayExOh[i * 3] == displayExOh[i * 3 + 1] &&
           displayExOh[i * 3 + 2] == displayExOh[i * 3] &&
           displayExOh[i * 3] != '') {
         _showWinDialog(i * 3);
+        return true;
       } else if (displayExOh[i] == displayExOh[i + 3] &&
           displayExOh[i + 6] == displayExOh[i] &&
           displayExOh[i] != '') {
         _showWinDialog(i);
+        return true;
       }
     }
     if (displayExOh[0] == displayExOh[4] &&
         displayExOh[0] == displayExOh[8] &&
         displayExOh[0] != '') {
       _showWinDialog(0);
-    }
-    if (displayExOh[2] == displayExOh[4] &&
+      return true;
+    } else if (displayExOh[2] == displayExOh[4] &&
         displayExOh[2] == displayExOh[6] &&
         displayExOh[2] != '') {
       _showWinDialog(2);
+      return true;
     }
-    if (countFilled == 9) {
-      _showWinDialog(countFilled);
-    }
+    return false;
   }
 
-  void _showWinDialog(int index) {
-    if (index == 9) {
-      showDialog(
-          barrierDismissible: false,
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-                title: Text(
-                  "DRAW!",
-                  style: TextStyle(color: Colors.grey[800]),
-                ),
-                actions: <Widget>[
-                  FlatButton(
-                    child: Text(
-                      "PLAY AGAIN!",
-                      style: TextStyle(color: Colors.grey[800]),
-                    ),
-                    onPressed: () {
-                      _clearTheBoard();
-                      Navigator.of(context).pop();
-                    },
-                  )
-                ]);
-          });
-    } else if (displayExOh[index] == 'x') {
+  void _showDrawDialog() {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: Text(
+                "DRAW!",
+                style: TextStyle(color: Colors.grey[900]),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  child: Text(
+                    "PLAY AGAIN!",
+                    style: TextStyle(color: Colors.grey[900]),
+                  ),
+                  onPressed: () {
+                    _clearTheBoard();
+                    Navigator.of(context).pop();
+                  },
+                )
+              ]);
+        });
+  }
+
+  void _showWinDialog(
+    int index,
+  ) {
+    if (displayExOh[index] == 'x') {
       showDialog(
           barrierDismissible: false,
           context: context,
@@ -139,13 +145,13 @@ class _HomePageState extends State<HomePage> {
             return AlertDialog(
                 title: Text(
                   "WINNER IS PLAYER X!",
-                  style: TextStyle(color: Colors.grey[800]),
+                  style: TextStyle(color: Colors.grey[900]),
                 ),
                 actions: <Widget>[
-                  FlatButton(
+                  TextButton(
                     child: Text(
                       "PLAY AGAIN!",
-                      style: TextStyle(color: Colors.grey[800]),
+                      style: TextStyle(color: Colors.grey[900]),
                     ),
                     onPressed: () {
                       _clearTheBoard();
@@ -162,13 +168,13 @@ class _HomePageState extends State<HomePage> {
             return AlertDialog(
                 title: Text(
                   "WINNER IS PLAYER O!",
-                  style: TextStyle(color: Colors.grey[800]),
+                  style: TextStyle(color: Colors.grey[900]),
                 ),
                 actions: <Widget>[
-                  FlatButton(
+                  TextButton(
                     child: Text(
                       "PLAY AGAIN!",
-                      style: TextStyle(color: Colors.grey[800]),
+                      style: TextStyle(color: Colors.grey[900]),
                     ),
                     onPressed: () {
                       _clearTheBoard();

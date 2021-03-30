@@ -1,16 +1,45 @@
 import 'package:flutter/material.dart';
 
 import 'tic_tac_toe.dart';
+import 'snake.dart';
 
-void main() => runApp(T_T_T());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[800],
-      body: Column(
-        children: <Widget>[Expanded(child: Container())],
+    return MaterialApp(
+      home: Scaffold(
+        backgroundColor: Colors.grey[900],
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: RaisedButton(
+                child: Text(
+                  'TIC TAC TOE',
+                  style: TextStyle(fontSize: 60, color: Colors.white),
+                ),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => TicTacToe()));
+                },
+              ),
+            ),
+            Expanded(
+              child: TextButton(
+                child: Text(
+                  'SNAKE',
+                  style: TextStyle(fontSize: 60, color: Colors.white),
+                ),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Snake()));
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
